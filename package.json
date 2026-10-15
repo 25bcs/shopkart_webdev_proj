@@ -1,0 +1,35 @@
+{
+  "name": "shopkart_webdev_proj",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run db && concurrently -k -n server,client \"npm run server\" \"npm run client\"",
+    "server": "node --env-file-if-exists=backend/.env --watch backend/index.js",
+    "client": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "start": "node --env-file-if-exists=backend/.env backend/index.js",
+    "seed": "node --env-file-if-exists=backend/.env backend/seed.js",
+    "test": "node --test --test-concurrency=1 tests/api.test.js",
+    "db": "node --env-file-if-exists=backend/.env scripts/database.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.0",
+    "razorpay": "^2.9.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^9.2.0",
+    "mongodb-memory-server": "^10.2.0",
+    "nock": "^15.0.1",
+    "supertest": "^7.1.4",
+    "vite": "^7.1.0"
+  }
+}

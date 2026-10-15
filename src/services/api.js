@@ -4,7 +4,7 @@ export async function api(path, method = 'GET', body) {
     body: body === undefined ? undefined : JSON.stringify(body)
   });
   if (!response.headers.get('content-type')?.includes('application/json')) {
-    throw new Error('This online preview has no backend. Run ShopKart locally to log in and shop.');
+    throw new Error('Start the backend with local MongoDB, or connect it to an online MongoDB database.');
   }
   const data = await response.json();
   if (!response.ok) {

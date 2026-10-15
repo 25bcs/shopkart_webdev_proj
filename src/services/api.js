@@ -3,6 +3,9 @@ export async function api(path, method = 'GET', body) {
     method, credentials: 'include', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: body === undefined ? undefined : JSON.stringify(body)
   });
+  if (!response.headers.get('content-type')?.includes('application/json')) {
+    throw new Error('This online preview has no backend. Run ShopKart locally to log in and shop.');
+  }
   const data = await response.json();
   if (!response.ok) {
     const error = new Error(data.message || 'Request failed');
